@@ -1,0 +1,23 @@
+<launch>
+  <arg name="orig_x" default="0" />
+  <arg name="orig_y" default="0" />
+  <arg name="orig_yaw" default="0" />
+  <arg name="map_file" default="$(find tb3_gazebo)/maps/willow.yaml"/>
+  
+  <!-- Robot model -->
+  <include file="$(find tb3_gazebo)/launch/spawn_robot.launch.xml">
+    <arg name="orig_x" default="$(arg orig_x)" />
+    <arg name="orig_y" default="$(arg orig_y)" />
+    <arg name="orig_yaw" default="$(arg orig_yaw)" />
+  </include>
+        
+  <!-- Gazebo simulation environment -->
+  <include file="$(find gazebo_ros)/launch/willowgarage_world.launch" />
+
+  <!-- Navigation -->
+  <include file="$(find tb3_gazebo)/launch/nav.launch.xml">
+    <arg name="map_file" default="$(arg map_file)" />
+  </include>
+
+</launch>
+
